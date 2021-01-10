@@ -79,19 +79,21 @@ const inputs = getInputs();
 // Taille du gazon
 const w = inputs.width ;
 
-// Positions des autres tondeuzes 
+// Positions des autres tondeuses 
 const othersPos = [{x:6 , y : 6 , direction : 'N'}] ;
 
-// On boucle sur chaque tondeuze
+// On boucle sur chaque tondeuse
 inputs.data.forEach(input => {
 
     // Les instrctions
     const directions = input.dir ;
-    // Postion de la tondeuze
+    // Postion de la tondeuse
     let currentPos = input.pos ;
     
     console.log("**Instructions**");
     console.log(directions);
+    // console.log("**Init POS**");
+    console.log(currentPos);
   
     
     
@@ -103,17 +105,17 @@ inputs.data.forEach(input => {
         if (directions[index] === "G" || directions[index] === "D") {
             const currDir = currentPos.direction ;
             currentPos.direction = rotate(currDir , directions[index]) ;
-            // console.log(currentPos);
+            console.log(currentPos);
             
         } else {
             const currPos= currentPos ;
             currentPos = translate(currPos ,othersPos , w);
-            // console.log(currentPos);
+            console.log(currentPos);
         }
         
     }
 
-    // Quand les instructions d'une tondeuze ont toutes ete execute , il faut ajouter sa position finale a otherPos comme ca il n'y aura pas de collisions
+    // Quand les instructions d'une tondeuse ont toutes ete execute , il faut ajouter sa position finale a otherPos comme ca il n'y aura pas de collisions
     othersPos.push(currentPos);
     
     console.log("**Resultat**");
